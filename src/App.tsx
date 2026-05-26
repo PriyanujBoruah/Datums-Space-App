@@ -197,7 +197,7 @@ export const App: React.FC = () => {
   // Render Organization Setup screen if authenticated but lacks organization ID scope
   if (currentUser && !currentUser.organizationId) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 selection:bg-brand-600 selection:text-white font-sans relative overflow-hidden text-slate-900 dark:text-slate-100">
+      <div className="min-h-[100dvh] bg-slate-50 dark:bg-slate-955 flex items-center justify-center p-4 selection:bg-brand-600 selection:text-white font-sans relative overflow-hidden text-slate-900 dark:text-slate-100">
         {/* Background HSL gradients */}
         <div className="absolute top-0 -left-4 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl filter animate-pulse" />
         <div className="absolute bottom-0 -right-4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl filter" />
@@ -272,7 +272,7 @@ export const App: React.FC = () => {
     const isCloud = firebaseService.isFirebaseConfigured();
 
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 selection:bg-brand-600 selection:text-white font-sans relative overflow-y-auto text-slate-900 dark:text-slate-100">
+      <div className="min-h-[100dvh] bg-slate-50 dark:bg-slate-950 flex items-center justify-center p-4 selection:bg-brand-600 selection:text-white font-sans relative overflow-y-auto text-slate-900 dark:text-slate-100">
         {/* Background HSL gradients */}
         <div className="absolute top-0 -left-4 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl filter animate-pulse" />
         <div className="absolute bottom-0 -right-4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl filter" />
@@ -640,7 +640,7 @@ export const App: React.FC = () => {
 
   // Primary Platform Workspace
   return (
-    <div className="h-screen max-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 flex font-sans text-slate-800 dark:text-slate-100 selection:bg-brand-600 selection:text-white relative transition-colors duration-300">
+    <div className="h-[100dvh] max-h-[100dvh] overflow-hidden bg-slate-50 dark:bg-slate-955 flex font-sans text-slate-800 dark:text-slate-100 selection:bg-brand-600 selection:text-white relative transition-colors duration-300">
       
       {/* Mobile Sidebar overlays */}
       {leftSidebarOpen && (
