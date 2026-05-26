@@ -543,10 +543,17 @@ export const ConsolePanel: React.FC<ConsolePanelProps> = ({ selectedTable, isOpe
             const isVeryNarrow = width < 360;
             
             let label = '';
-            if (tab === 'schema') label = isVeryNarrow ? '' : (isNarrow ? 'Inspect' : 'Inspector');
-            if (tab === 'sql') label = isVeryNarrow ? '' : (isNarrow ? 'SQL' : 'Worksheet');
-            if (tab === 'viz') label = isVeryNarrow ? '' : (isNarrow ? 'Viz' : 'Visualizer');
-            if (tab === 'suggestions') label = isVeryNarrow ? '' : (isNarrow ? 'Directives' : 'Suggestions');
+            if (isMobile) {
+              if (tab === 'schema') label = 'Inspect';
+              if (tab === 'sql') label = 'SQL';
+              if (tab === 'viz') label = 'Viz';
+              if (tab === 'suggestions') label = 'Suggestions';
+            } else {
+              if (tab === 'schema') label = isVeryNarrow ? '' : (isNarrow ? 'Inspect' : 'Inspector');
+              if (tab === 'sql') label = isVeryNarrow ? '' : (isNarrow ? 'SQL' : 'Worksheet');
+              if (tab === 'viz') label = isVeryNarrow ? '' : (isNarrow ? 'Viz' : 'Visualizer');
+              if (tab === 'suggestions') label = isVeryNarrow ? '' : (isNarrow ? 'Directives' : 'Suggestions');
+            }
 
             return (
               <button
