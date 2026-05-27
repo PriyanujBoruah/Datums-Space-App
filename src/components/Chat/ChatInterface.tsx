@@ -1477,12 +1477,13 @@ export const ChatInterface: React.FC = () => {
                 handleSend();
               }
             }}
-            placeholder={isLoading ? `${activeAgent.name} is formulating response...` : `Ask ${activeAgent.name} to conduct statistical reconciliation or audit reports...`}
-            className={`w-full text-slate-800 dark:text-slate-200 text-xs rounded-xl pl-4 pr-12 py-3.5 outline-none resize-none placeholder-slate-550 shadow-xs focus:bg-white transition-all relative z-10 ${
+            placeholder={isLoading ? `${activeAgent.name} is formulating...` : (window.innerWidth < 640 ? `Message ${activeAgent.name}` : `Ask ${activeAgent.name} to conduct statistical reconciliation or audit reports...`)}
+            className={`w-full text-slate-800 dark:text-slate-200 text-xs rounded-xl pl-4 pr-12 py-3.5 outline-none resize-none placeholder-slate-550 shadow-xs focus:bg-white transition-all relative z-10 overflow-y-hidden ${
               isLoading 
                 ? 'bg-transparent border-transparent cursor-not-allowed text-slate-450 dark:text-slate-500' 
                 : 'bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-900 focus:border-brand-500/70 focus:ring-1 focus:ring-brand-500/25 focus:bg-white'
             }`}
+            style={{ height: '46px', minHeight: '46px' }}
           />
           <button
             onClick={() => handleSend()}
