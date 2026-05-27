@@ -278,6 +278,10 @@ class AgentManager {
 
   setActiveAgent(id: AgentId): void {
     if (PERSONAS[id]) {
+      if (!this.enabledAgentIds.includes(id)) {
+        console.warn(`[AgentManager] Cannot activate disabled agent: ${id}`);
+        return;
+      }
       this.activeAgentId = id;
       eventBus.emit('ACTIVE_AGENT_CHANGED', PERSONAS[id]);
       
@@ -342,6 +346,22 @@ class AgentManager {
       }
     } catch (err) {
       console.error('[AgentManager] Failed to load enabled agents:', err);
+    }
+
+    // Safety check: ensure activeAgentId is actually enabled on startup
+    if (!this.enabledAgentIds.includes(this.activeAgentId)) {
+      if (this.enabledAgentIds.length > 0) {
+        this.activeAgentId = this.enabledAgentIds[0];
+      } else {
+        this.enabledAgentIds = ['analyst'];
+        this.activeAgentId = 'analyst';
+      }
+    }
+
+    // Safety check: ensure activeRoster contains only enabled agents
+    this.activeRoster = this.activeRoster.filter(id => this.enabledAgentIds.includes(id as AgentId));
+    if (this.activeRoster.length === 0) {
+      this.activeRoster = [this.activeAgentId];
     }
   }
 
@@ -1961,7 +1981,8 @@ Write the final strategic executive consensus commentary here:`;
     const AUTHORITY_ORDER: AgentId[] = ['analyst', 'logistics', 'growth', 'auditor', 'engineer', 'cso', 'compliance', 'product', 'finance', 'marketing', 'hr'];
     const activeCommittee = AUTHORITY_ORDER.filter(id => enabled.includes(id));
     if (activeCommittee.length === 0) {
-      activeCommittee.push('analyst');
+      const firstEnabled = this.getEnabledAgents()[0] || 'analyst';
+      activeCommittee.push(firstEnabled);
     }
 
     const agendaList = activeCommittee.map((id, index) => {
