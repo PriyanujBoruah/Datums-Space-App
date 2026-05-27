@@ -1248,14 +1248,14 @@ export const ChatInterface: React.FC = () => {
             onClick={toggleToolEngine}
             className="flex items-center justify-between cursor-pointer group select-none hover:opacity-85"
           >
-            <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-550 flex items-center gap-1.5">
+            <span className="text-[9px] font-mono font-bold uppercase tracking-widest text-slate-400 dark:text-slate-555 flex items-center gap-1.5">
               <Terminal className="w-3 h-3 text-brand-500" />
               🛠️ Agentic Tool Engine
               {isToolEngineCollapsed && (
                 <span className="ml-2 text-[7.5px] px-1.5 py-0.2 rounded bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-400 font-bold font-sans normal-case tracking-normal">4 Tools Active</span>
               )}
             </span>
-            <div className="flex items-center gap-1.5 text-slate-400 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-450 transition-colors">
+            <div className="flex items-center gap-1.5 text-slate-400 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-455 transition-colors">
               <span className="text-[8px] font-mono uppercase">
                 {isToolEngineCollapsed ? 'expand menu' : 'collapse menu'}
               </span>
@@ -1264,139 +1264,138 @@ export const ChatInterface: React.FC = () => {
           </div>
 
           {!isToolEngineCollapsed && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 animate-[fadeIn_0.2s_ease-out]">
-            {/* Tool 1: Human Scan Insights */}
-            <div 
-              onClick={() => {
-                const activeT = activeTables[0]?.name;
-                if (activeT) {
-                  agentManager.scanTableAsHuman(activeT);
-                } else {
-                  eventBus.emit('SWITCH_TAB', 'ingest');
-                }
-              }}
-              className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer ${
-                activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
-              }`}
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-805 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    🔍 Human Scan Insights
-                  </span>
+            <div className="flex sm:grid overflow-x-auto sm:overflow-x-visible gap-3 sm:grid-cols-2 md:grid-cols-4 animate-[fadeIn_0.2s_ease-out] flex-nowrap sm:flex-wrap pb-2 sm:pb-0 scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {/* Tool 1: Human Scan Insights */}
+              <div 
+                onClick={() => {
+                  const activeT = activeTables[0]?.name;
+                  if (activeT) {
+                    agentManager.scanTableAsHuman(activeT);
+                  } else {
+                    eventBus.emit('SWITCH_TAB', 'ingest');
+                  }
+                }}
+                className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer flex-shrink-0 w-[240px] sm:w-auto ${
+                  activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
+                }`}
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-805 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      🔍 Human Scan Insights
+                    </span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-normal font-sans">
+                    Scans loaded spreadsheet at eye-level to profile columns, nulls, and structures.
+                  </p>
                 </div>
-                <p className="text-[9px] text-slate-500 leading-normal font-sans">
-                  Scans loaded spreadsheet at eye-level to profile columns, nulls, and structures.
-                </p>
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
+                  <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
+                  <div className="flex gap-1">
+                    <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
+                    <span className="px-1.5 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/40 text-cyan-650 dark:text-cyan-400 text-[7px] font-bold uppercase tracking-wider">⚙️ Silas</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
-                <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
-                <div className="flex gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
-                  <span className="px-1.5 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/40 text-cyan-650 dark:text-cyan-400 text-[7px] font-bold uppercase tracking-wider">⚙️ Silas</span>
+
+              {/* Tool 2: Boardroom Consensus */}
+              <div 
+                onClick={() => {
+                  const query = inputText.trim() || "Perform an end-to-end strategic review on current performance metrics";
+                  setInputText('');
+                  agentManager.startBoardroomConsensus(query);
+                }}
+                className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer flex-shrink-0 w-[240px] sm:w-auto ${
+                  activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
+                }`}
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-805 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      👥 Boardroom Consensus
+                    </span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-normal font-sans">
+                    Summons key agent personas to deliver multi-perspective briefings and audited resolutions.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
+                  <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
+                  <div className="flex gap-1">
+                    <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-400 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tool 3: Concentration Optimizer */}
+              <div 
+                onClick={() => {
+                  const activeT = activeTables[0]?.name;
+                  if (activeT) {
+                    agentManager.setActiveAgent('analyst');
+                    agentManager.sendMessage(`Perform an automated Pareto (80/20) concentration analysis and calculate Gini coefficients on the loaded dataset table '${activeT}'.`);
+                  } else {
+                    eventBus.emit('SWITCH_TAB', 'ingest');
+                  }
+                }}
+                className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer flex-shrink-0 w-[240px] sm:w-auto ${
+                  activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
+                }`}
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-850 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      📊 Concentration Optimizer
+                    </span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-normal font-sans">
+                    Isolates top categories driving 80% cumulative volume and maps data inequality spreads.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
+                  <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
+                  <div className="flex gap-1">
+                    <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-450 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tool 4: SWOT & OKR Strategic Planner */}
+              <div 
+                onClick={() => {
+                  const activeT = activeTables[0]?.name;
+                  if (activeT) {
+                    agentManager.setActiveAgent('cso');
+                    agentManager.sendMessage(`Perform a comprehensive corporate SWOT matrix audit and generate 3 actionable OKR planners based on the metrics inside table '${activeT}'.`);
+                  } else {
+                    eventBus.emit('SWITCH_TAB', 'ingest');
+                  }
+                }}
+                className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer flex-shrink-0 w-[240px] sm:w-auto ${
+                  activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
+                }`}
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-855 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                      🎯 SWOT & OKR Planner
+                    </span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-normal font-sans">
+                    Synthesizes sandbox records into corporate OKR objectives and high-level SWOT vectors.
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
+                  <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
+                  <div className="flex gap-1">
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-400 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
+                    <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Tool 2: Boardroom Consensus */}
-            <div 
-              onClick={() => {
-                const query = inputText.trim() || "Perform an end-to-end strategic review on current performance metrics";
-                setInputText('');
-                agentManager.startBoardroomConsensus(query);
-              }}
-              className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer ${
-                activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
-              }`}
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-805 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    👥 Boardroom Consensus
-                  </span>
-                </div>
-                <p className="text-[9px] text-slate-500 leading-normal font-sans">
-                  Summons key agent personas to deliver multi-perspective briefings and audited resolutions.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
-                <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
-                <div className="flex gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-400 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tool 3: Concentration Optimizer */}
-            <div 
-              onClick={() => {
-                const activeT = activeTables[0]?.name;
-                if (activeT) {
-                  agentManager.setActiveAgent('analyst');
-                  agentManager.sendMessage(`Perform an automated Pareto (80/20) concentration analysis and calculate Gini coefficients on the loaded dataset table '${activeT}'.`);
-                } else {
-                  eventBus.emit('SWITCH_TAB', 'ingest');
-                }
-              }}
-              className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer ${
-                activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
-              }`}
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-850 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    📊 Concentration Optimizer
-                  </span>
-                </div>
-                <p className="text-[9px] text-slate-500 leading-normal font-sans">
-                  Isolates top categories driving 80% cumulative volume and maps data inequality spreads.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
-                <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
-                <div className="flex gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-400 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tool 4: SWOT & OKR Strategic Planner */}
-            <div 
-              onClick={() => {
-                const activeT = activeTables[0]?.name;
-                if (activeT) {
-                  agentManager.setActiveAgent('cso');
-                  agentManager.sendMessage(`Perform a comprehensive corporate SWOT matrix audit and generate 3 actionable OKR planners based on the metrics inside table '${activeT}'.`);
-                } else {
-                  eventBus.emit('SWITCH_TAB', 'ingest');
-                }
-              }}
-              className={`p-3 border rounded-xl bg-slate-50/50 hover:bg-slate-100/70 dark:bg-slate-900/10 dark:hover:bg-slate-900/30 border-slate-200 dark:border-slate-855 hover:border-brand-500/30 dark:hover:border-brand-500/25 transition-all shadow-2xs group flex flex-col justify-between text-left cursor-pointer ${
-                activeTables.length === 0 ? 'opacity-50 pointer-events-none' : ''
-              }`}
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wide text-slate-855 dark:text-slate-200 flex items-center gap-1 group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                    🎯 SWOT & OKR Planner
-                  </span>
-                </div>
-                <p className="text-[9px] text-slate-500 leading-normal font-sans">
-                  Synthesizes sandbox records into corporate OKR objectives and high-level SWOT vectors.
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-3 pt-2 border-t border-slate-150 dark:border-slate-900/60">
-                <span className="text-[7.5px] font-mono text-slate-400 dark:text-slate-600 uppercase">Dispatched</span>
-                <div className="flex gap-1">
-                  <span className="px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-650 dark:text-emerald-400 text-[7px] font-bold uppercase tracking-wider">🎯 Marcus</span>
-                  <span className="px-1.5 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 text-[7px] font-bold uppercase tracking-wider">📊 Ada</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
           )}
         </div>
 
