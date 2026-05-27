@@ -703,13 +703,13 @@ export const App: React.FC = () => {
 
             {/* Active Table Selector replacing Active Workspace Scope */}
             {tables.length > 0 ? (
-              <div className="flex items-center gap-2 px-2.5 py-1">
-                <Database className="w-3.5 h-3.5 text-slate-400 dark:text-slate-550 flex-shrink-0" />
-                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest hidden sm:inline">Dataset:</span>
+              <div className="flex items-center gap-2 px-2.5 py-1 min-w-0 flex-shrink">
+                <Database className="w-3.5 h-3.5 text-slate-400 dark:text-slate-555 flex-shrink-0" />
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest hidden sm:inline flex-shrink-0">Dataset:</span>
                 <select
                   value={selectedTable}
                   onChange={(e) => setSelectedTable(e.target.value)}
-                  className="bg-transparent border-none text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none cursor-pointer pr-1 font-mono uppercase"
+                  className="bg-transparent border-none text-xs font-bold text-slate-700 dark:text-slate-300 focus:outline-none cursor-pointer pr-1 font-mono uppercase truncate max-w-[125px] sm:max-w-[200px] flex-shrink-0"
                 >
                   {tables.map(t => (
                     <option key={t.name} value={t.name} className="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 lowercase font-mono">
