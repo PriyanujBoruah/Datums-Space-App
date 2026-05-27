@@ -1270,6 +1270,11 @@ export const ChatInterface: React.FC = () => {
                 onClick={() => {
                   const activeT = activeTables[0]?.name;
                   if (activeT) {
+                    const enabled = agentManager.getEnabledAgents();
+                    const target = ['analyst', 'engineer'].find(id => enabled.includes(id as AgentId)) as AgentId || enabled[0];
+                    if (target) {
+                      agentManager.setActiveAgent(target);
+                    }
                     agentManager.scanTableAsHuman(activeT);
                   } else {
                     eventBus.emit('SWITCH_TAB', 'ingest');
@@ -1333,7 +1338,11 @@ export const ChatInterface: React.FC = () => {
                 onClick={() => {
                   const activeT = activeTables[0]?.name;
                   if (activeT) {
-                    agentManager.setActiveAgent('analyst');
+                    const enabled = agentManager.getEnabledAgents();
+                    const target = ['analyst', 'cso'].find(id => enabled.includes(id as AgentId)) as AgentId || enabled[0];
+                    if (target) {
+                      agentManager.setActiveAgent(target);
+                    }
                     agentManager.sendMessage(`Perform an automated Pareto (80/20) concentration analysis and calculate Gini coefficients on the loaded dataset table '${activeT}'.`);
                   } else {
                     eventBus.emit('SWITCH_TAB', 'ingest');
@@ -1367,7 +1376,11 @@ export const ChatInterface: React.FC = () => {
                 onClick={() => {
                   const activeT = activeTables[0]?.name;
                   if (activeT) {
-                    agentManager.setActiveAgent('cso');
+                    const enabled = agentManager.getEnabledAgents();
+                    const target = ['cso', 'analyst'].find(id => enabled.includes(id as AgentId)) as AgentId || enabled[0];
+                    if (target) {
+                      agentManager.setActiveAgent(target);
+                    }
                     agentManager.sendMessage(`Perform a comprehensive corporate SWOT matrix audit and generate 3 actionable OKR planners based on the metrics inside table '${activeT}'.`);
                   } else {
                     eventBus.emit('SWITCH_TAB', 'ingest');
