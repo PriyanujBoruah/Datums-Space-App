@@ -209,7 +209,10 @@ export const BoardroomDashboard: React.FC<BoardroomDashboardProps> = ({ onClose 
   const enabled = agentManager.getEnabledAgents();
   const AUTHORITY_ORDER: AgentId[] = ['analyst', 'logistics', 'growth', 'auditor', 'engineer', 'cso', 'compliance', 'product', 'finance', 'marketing', 'hr'];
   const activeRoster = AUTHORITY_ORDER.filter(id => enabled.includes(id));
-  if (activeRoster.length === 0) activeRoster.push('analyst');
+  if (activeRoster.length === 0) {
+    const firstEnabled = enabled[0] || 'analyst';
+    activeRoster.push(firstEnabled);
+  }
 
 
   useEffect(() => {
@@ -225,7 +228,7 @@ export const BoardroomDashboard: React.FC<BoardroomDashboardProps> = ({ onClose 
       const keys = Object.keys(currentSession.speeches) as AgentId[];
       setSelectedAgentId(keys[keys.length - 1]);
     } else {
-      setSelectedAgentId('analyst');
+      setSelectedAgentId(activeRoster[0] || 'analyst');
     }
 
     // Subscribe to session updates
@@ -535,7 +538,7 @@ export const BoardroomDashboard: React.FC<BoardroomDashboardProps> = ({ onClose 
       );
     }
 
-    const activeId = selectedAgentId || 'analyst';
+    const activeId = selectedAgentId || activeRoster[0] || 'analyst';
     const speech = session.speeches[activeId];
     
      if (!speech && session.activeAgentId === activeId) {
