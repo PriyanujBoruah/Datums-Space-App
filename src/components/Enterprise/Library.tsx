@@ -16,7 +16,7 @@ export const Library: React.FC = () => {
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [newSessionName, setNewSessionName] = useState('');
   
-  // UI states
+  // UI States
   const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState('');
   const [error, setError] = useState<string | null>(null);
