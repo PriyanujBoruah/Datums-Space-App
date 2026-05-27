@@ -741,7 +741,7 @@ export const App: React.FC = () => {
               </svg>
               <div className="text-left block">
                 <h1 className="text-xs font-bold text-slate-850 dark:text-slate-100 tracking-wider leading-none">Datums Space</h1>
-                <p className="text-[8px] text-brand-500 dark:text-brand-400 font-semibold tracking-widest uppercase mt-0.5">Agentic Business Intelligence</p>
+                <p className="text-[8px] text-brand-500 dark:text-brand-400 font-semibold tracking-widest uppercase mt-0.5 hidden sm:block">Agentic Business Intelligence</p>
               </div>
             </div>
             
