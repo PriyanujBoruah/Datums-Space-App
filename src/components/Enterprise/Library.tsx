@@ -16,7 +16,7 @@ export const Library: React.FC = () => {
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [newSessionName, setNewSessionName] = useState('');
   
-  // UI States
+  // UI states
   const [isLoading, setIsLoading] = useState(false);
   const [loadingText, setLoadingText] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -389,7 +389,7 @@ export const Library: React.FC = () => {
                   <button
                     onClick={() => handleRestore(session)}
                     disabled={isLoading}
-                    className="flex-1 py-1.8 bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/20 dark:hover:bg-brand-950/40 border border-brand-150/40 dark:border-brand-500/10 text-brand-650 dark:text-brand-400 hover:text-brand-600 rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                    className="flex-1 py-1.8 bg-transparent hover:bg-brand-50 dark:bg-transparent dark:hover:bg-brand-950/20 border border-brand-150/40 dark:border-brand-500/10 text-brand-650 dark:text-brand-400 hover:text-brand-600 rounded-lg text-[10px] font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <FolderOpen className="w-3.5 h-3.5" />
                     Resume Session Context
