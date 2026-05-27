@@ -450,7 +450,7 @@ export const UnstructuredIngestion: React.FC<UnstructuredIngestionProps> = ({ on
             <FileSpreadsheet className="w-5 h-5 text-brand-500 dark:text-brand-400" />
             Unstructured Spreadsheet Ingestion
           </h3>
-          <span className="bg-purple-100 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 text-[8.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full select-none">
+          <span className="bg-brand-100/70 dark:bg-brand-950/40 text-brand-650 dark:text-brand-400 text-[8.5px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full select-none border border-brand-200/30 dark:border-brand-500/10">
             AI Layout Flattening
           </span>
         </div>
@@ -611,7 +611,7 @@ export const UnstructuredIngestion: React.FC<UnstructuredIngestionProps> = ({ on
               accept=".csv,.xlsx,.xls"
               onChange={handleChange}
             />
-            <div className="p-4 bg-white dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md mb-4 text-purple-500 dark:text-purple-450">
+            <div className="p-4 bg-white dark:bg-slate-900/80 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md mb-4 text-brand-500 dark:text-brand-400">
               <Upload className="w-8 h-8" />
             </div>
             <p className="text-sm font-medium text-slate-700 dark:text-slate-200">
