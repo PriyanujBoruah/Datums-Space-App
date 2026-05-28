@@ -19,7 +19,6 @@ import PrivacyLab from './components/Enterprise/PrivacyLab';
 import AuditDossier from './components/Enterprise/AuditDossier';
 import SpatialBook from './components/Enterprise/SpatialBook';
 import Library from './components/Enterprise/Library';
-import SheetsConnect from './components/SheetsConnect/SheetsConnect';
 
 export const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
@@ -762,9 +761,8 @@ export const App: React.FC = () => {
         </header>
 
         {/* Tab content panels */}
-        <div className={`flex-1 min-h-0 bg-slate-50/50 dark:bg-slate-955/5 relative z-10 flex flex-col transition-colors duration-300 ${activeTab === 'chat' || activeTab === 'sheets-connect' ? 'overflow-hidden p-0' : 'overflow-y-auto p-6'}`}>
+        <div className={`flex-1 min-h-0 bg-slate-50/50 dark:bg-slate-950/5 relative z-10 flex flex-col transition-colors duration-300 ${activeTab === 'chat' ? 'overflow-hidden p-0' : 'overflow-y-auto p-6'}`}>
           {activeTab === 'chat' && <ChatInterface />}
-          {activeTab === 'sheets-connect' && <SheetsConnect />}
           
           {activeTab === 'ingest' && (
             <div className="space-y-8 max-w-4xl w-full mx-auto pb-12">
@@ -815,7 +813,7 @@ export const App: React.FC = () => {
         </div>
       </main>
 
-      {rightSidebarOpen && activeTab !== 'sheets-connect' && (
+      {rightSidebarOpen && (
         <div 
           onMouseDown={() => setActiveResizer('right')}
           className={`hidden md:block w-1 hover:w-1.5 cursor-col-resize hover:bg-brand-500/50 dark:hover:bg-brand-500/40 transition-all z-20 flex-shrink-0 h-full border-l border-slate-200/80 dark:border-slate-900/60 ${
@@ -828,7 +826,7 @@ export const App: React.FC = () => {
       {/* SQL console Workbench & Schema Inspector (Right) */}
       <ConsolePanel 
         selectedTable={selectedTable}
-        isOpen={rightSidebarOpen && activeTab !== 'sheets-connect'}
+        isOpen={rightSidebarOpen}
         setIsOpen={setRightSidebarOpen}
         width={rightSidebarWidth}
       />
