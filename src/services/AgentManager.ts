@@ -1455,30 +1455,6 @@ Write the complete markdown report:`;
   }
 
   /**
-   * Exposes a public method to generate text responses using the active LLM provider.
-   */
-  async generateTextFromPrompt(prompt: string): Promise<string> {
-    let activeProvider = this.settings.selectedProvider;
-    if (activeProvider === 'local') {
-      return "Offline Sandbox: Simulated AI response.";
-    }
-    if (activeProvider === 'gemini' && !this.settings.geminiKey) activeProvider = 'datums';
-    if (activeProvider === 'mistral' && !this.settings.mistralKey) activeProvider = 'datums';
-    if (activeProvider === 'groq' && !this.settings.groqKey) activeProvider = 'datums';
-
-    try {
-      return await this.callApi(activeProvider, prompt);
-    } catch (err: any) {
-      console.error('[AgentManager] generateTextFromPrompt failed, trying fallback:', err);
-      try {
-        return await this.callApi('datums', prompt);
-      } catch (innerErr: any) {
-        throw new Error(`LLM Query failed: ${innerErr.message || innerErr}`);
-      }
-    }
-  }
-
-  /**
    * Generates a valid DuckDB SELECT SQL query based on user prompt and active schema.
    */
   async generateSqlFromPrompt(tableName: string, schemaText: string, userPrompt: string): Promise<string> {
