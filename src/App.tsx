@@ -267,7 +267,7 @@ export const App: React.FC = () => {
     );
   }
 
-  // Render Login screen if not authenticated
+  // Render Login screen if not Authenticated
   if (!currentUser) {
     const isCloud = firebaseService.isFirebaseConfigured();
 
