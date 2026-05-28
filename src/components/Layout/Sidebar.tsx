@@ -248,7 +248,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, theme
   const navItems = [
     { id: 'chat', label: 'Chat Analytics', icon: MessageSquare },
     { id: 'ingest', label: 'Ingest Spreadsheets', icon: FileSpreadsheet },
-    { id: 'sheets-connect', label: 'Sheets Connect', icon: FileSpreadsheet },
     { id: 'neural', label: 'Neural Ingestion', icon: Sparkles },
     { id: 'join', label: 'Relational Join Lab', icon: ArrowLeftRight },
     { id: 'privacy', label: 'Compliance Privacy Lab', icon: ShieldAlert },
